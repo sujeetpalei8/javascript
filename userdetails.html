@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>User List</title>
+        <style>
+            table, td{
+                border: solid 1px black;
+            }
+            #editDiv{
+                display: none;
+                height: 100%;
+                width: 100%;
+            }
+        </style>    
+    </head>
+    <body>
+        <table id="userTable" style="width: 100%;">
+        </table>
+        <div id="editDiv">
+            <form>
+                Id: <input disabled id="id"><br>
+                Name: <input id="name"><br>
+                UserName: <input id="userName"><br>
+                E-mail: <input id="email"><br>
+                Company: <input id="company"><br>
+                <button type = "button" onclick="editUser()">Submit</button>
+                <button onclick="cancelEdit()">Cancel</button>
+            </form>
+        </div>
+    </body>
+    <script>
+        var x=[];
+        fetchUser();
+    function fetchUser(){
+        fetch("https://jsonplaceholder.typicode.com/users")
+        .then(response => response.json())
+        .then((json) => {
+            x.push(json)
+            x=x[0];
+            iterateList(x);
+        })
+    }
+
+    function iterateList(userList){
+        var list = "<tr><td>Id</td><td>Name</td><td>Username</td><td>Email</td><td>Company</td><td></td></tr>";
+        for(i=0;i<userList.length;i++){
+            list += `<tr> <td> ${userList[i].id} </td> <td> ${userList[i].name} </td> <td> ${userList[i].username} </td> <td> ${userList[i].email} </td> 
+            <td> ${userList[i].company.name} </td> <td><button onclick="editUserDialogBox(${userList[i].id})">edit</button><button onclick = "deleteUser(${userList[i].id})">delete</button> </td></tr>`;
+        }
+        document.getElementById("userTable").innerHTML = list;
+        
+    }
+    function editUserDialogBox(id){
+        document.getElementById("editDiv").style.display = 'block';
+        document.getElementById("userTable").style.display = 'none';
+        document.getElementById("id").value=id;
+    }
+    function deleteUser(id){
+        // fetch(`https://jsonplaceholder.typicode.com/posts/${id}`, {
+    	// method: 'DELETE'   
+        // })
+        x.splice(id-1,1);
+        iterateList(x);
+    }
+    function cancelEdit(){
+        document.getElementById("editDiv").style.display = 'block';
+        document.getElementById("userTable").style.display = 'none';
+        iterateList(x);
+    }
+    function editUser(){
+        var id = document.getElementById("id").value; 
+        var obj2 = {name: document.getElementById("company").value};
+        var obj = {
+            id: document.getElementById("id").value,
+            name: document.getElementById("name").value,
+            username: document.getElementById("userName").value,
+            email: document.getElementById("email").value,
+            company:JSON.stringify(obj2)
+        }
+        x[id-1] = JSON.stringify(obj);
+        console.log(x);
+        cancelEdit();
+        fetch(`https://jsonplaceholder.typicode.com/users/${id}`,{
+            method:`PUT`,
+            body: JSON.stringify(obj)
+        })
+        .then(response=>response.json)
+        .then(json=>console.log(json))
+    }
+    </script>
+</html>
