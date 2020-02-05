@@ -23,7 +23,7 @@
 
 
         </tbody>
-       
+
     </table>
     <div id="deletemsg" class="displaymsg">
         <p>ITEM DELETED</p>
@@ -33,21 +33,34 @@
     </div>
     <!-- <Button type="button" onclick="sortname()" >sort</Button> -->
     <div id="editDetails">
-        <form >
-            <div class="columnallign" >
-            Id:<div><input type="text" disabled id="userid"></div>
-            Name:<div><input type="text" id="name" required></div>
-            Username:<div><Input type="text" id="username" required></div>
-            E-mail: <div><input type="email" id="email" required></div>
-            Company:<div><input type="text" id="company" required></div>
-            <Button type="button" onclick="updateUser()" class="updatebutton">SUBMIT</Button>
-            <button type="cancel" class="cancelbutton">CANCEL</button>
+        <form>
+            <div class="columnallign">
+                Id:<div><input type="text" disabled id="userid"></div>
+                
+                Name:<div><input type="text" id="name" required></div>
+                <div id="invalidname" class="invalid">
+                    <p>Please enter a valid name</p>
+                </div>
+                Username:<div><Input type="text" id="username" required></div>
+                    <div id="invaliduname" class="invalid">
+                        <p>Please enter a valid username</p>
+                    </div>
+                E-mail: <div><input type="email" id="email" required></div>
+                <div id="invalidemail" class="invalid">
+                    <p>Please enter a valid email</p>
+                </div>
+                Company:<div><input type="text" id="company" required></div>
+                <div id="invalidcname" class="invalid">
+                    <p>Please enter a valid company name</p>
+                </div>
+                <Button type="button" onclick="updateUser()" class="updatebutton">SUBMIT</Button>
+                <button type="cancel" class="cancelbutton">CANCEL</button>
             </div>
         </form>
     </div>
 </body>
 <script type="text/javascript" src="jsondemo.js">
-    
+
 
 
 </script>

@@ -86,3 +86,7 @@ input {
     width: 100%;
     font-weight:900 ;
 }
+.invalid{
+    display: none;
+    column-span: 2 ;
+}

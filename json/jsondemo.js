@@ -1,5 +1,5 @@
 var arr = [];
-var x=1;
+var x = 1;
 fetch("https://jsonplaceholder.typicode.com/users")
     .then(response => response.json())
     .then((data) => {
@@ -59,15 +59,29 @@ function updateUser() {
         email: document.getElementById("email").value,
         company: { name: document.getElementById("company").value }
     }
-    var index = document.getElementById("userid").value;
-    arr[index - 1] = updatedUser;
+    if (updatedUser.name == "") {
 
-    // alert("The data is updated");
-    assigndata(arr);
+        document.querySelector("#invalidname p").style.display = 'block';
+    } else if (updatedUser.username == "") {
+
+        document.querySelector("#invaliduname p").style.display = 'block';
+    } else if (updatedUser.email == "") {
+        
+        document.querySelector("#invalidemail p").style.display = 'block';
+    } else if(updatedUser.company.name==""){
+        
+        document.querySelector("#invalidcname p").style.display='block';
+    }else{
+
+        var index = document.getElementById("userid").value;
+        arr[index - 1] = updatedUser;
+
+
+        assigndata(arr);
     document.getElementById("editDetails").style.display = 'none';
-    document.getElementById("jsondata").style.display = 'block';
-    displaymessage("updatemsg");
-}
+        document.getElementById("jsondata").style.display = 'block';
+        displaymessage("updatemsg");
+    }}
 function displaymessage(message) {
 
     document.getElementById(message).style.display = 'block';
@@ -78,7 +92,7 @@ function displaymessage(message) {
 }
 
 function sortname(compare) {
-    
+
     if (compare == "id") {
         console.log(arr.sort(function (a, b) {
 
@@ -89,7 +103,7 @@ function sortname(compare) {
             else if (a.id < b.id) {
                 comp = -1;
             }
-            return comp*x*-1;
+            return comp * x * -1;
         }));
     }
     if (compare == "name") {
@@ -102,7 +116,7 @@ function sortname(compare) {
             else if (a.name < b.name) {
                 comp = -1;
             }
-            return comp*x;
+            return comp * x;
         }));
     }
     if (compare == "username") {
@@ -115,7 +129,7 @@ function sortname(compare) {
             else if (a.username < b.username) {
                 comp = -1;
             }
-            return comp*x;
+            return comp * x;
         }));
     }
     if (compare == "email") {
@@ -128,7 +142,7 @@ function sortname(compare) {
             else if (a.email < b.email) {
                 comp = -1;
             }
-            return comp*x;
+            return comp * x;
         }));
     }
     if (compare == "companyname") {
@@ -141,9 +155,9 @@ function sortname(compare) {
             else if (a.company.name < b.company.name) {
                 comp = -1;
             }
-            return comp*x;
+            return comp * x;
         }));
     }
     assigndata(arr);
-    x=x*-1;
+    x = x * -1;
 }
