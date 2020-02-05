@@ -1,0 +1,88 @@
+#jsondata {
+
+    background: linear-gradient(45deg, skyblue, pink);
+    border: solid 2px chocolate;
+    margin: auto;
+
+    height: fit-content;
+    width: fit-content;
+}
+
+thead {
+    border: 2px solid brown;
+    background-color: cadetblue;
+}
+
+td {
+    border: 2px solid seagreen;
+
+
+}
+
+.cancelbutton {
+    background-color: red;
+    height: 50px;
+    width: 60px;
+
+    border-radius: 50%;
+    margin-left: 50px;
+    margin-top: 20px;
+}
+
+.editbutton {
+    background-color: tan;
+    color: black;
+    width: 80px;
+    border-style: ridge;
+    margin-left: 30px
+}
+
+.deletebutton {
+    background-color: darkred;
+    color: beige;
+    width: 80px;
+    border-style: ridge;
+    font-weight: bold;
+    margin-left: 30px
+}
+
+.updatebutton {
+    background-color: red;
+    height: 50px;
+    width: 60px;
+    margin-top: 20px;
+    border-radius: 50%;
+
+
+}
+
+#editDetails {
+    margin: auto;
+    padding: 20px 300px;
+    height: fit-content;
+    width: fit-content;
+    background-color: darkcyan;
+
+
+}
+
+input {
+    padding: 10px;
+    color: maroon;
+
+
+}
+.columnallign { 
+    display: grid;
+    grid-column-gap: 50px;
+    grid-row-gap: 10px;
+    grid-template-columns: auto auto
+    
+    
+
+}
+.displaymsg{
+    color: red;
+    width: 100%;
+    font-weight:900 ;
+}
